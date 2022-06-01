@@ -1,6 +1,8 @@
 key = [int(i) for i in input("введите ключ:").split()]
 text = input("введите текст")
 #mod: 1 - посимвольно, 2 - группы, 3 - слова
+mod = int(input("мод"))
+group_len = int(input("группа символов"))
 
 def litter(text, key, group_len, mod):
     lkey = len(key)
@@ -15,6 +17,36 @@ def litter(text, key, group_len, mod):
     elif mod == 3:
         probel = ' '
         text = text.split
-        text += ['\0' for _ in range((lkey - (ltext % lkey)) % lkey]
+        text += ['\0' for k in range((lkey - (ltext % lkey)) % lkey)]
     return text
+
+def encryption(text, key, mod, group_len):
+    lkey = len(key)
+    ltext = len(text)
+    probel = ''
+    text = litter(text, key, group_len, mod)
+
+
+
+
+print (litter(text, key, group_len, mod))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
