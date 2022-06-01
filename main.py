@@ -1,9 +1,3 @@
-key = [int(i) for i in input("введите ключ:").split()]
-text = input("введите текст")
-#mod: 1 - посимвольно, 2 - группы, 3 - слова
-mod = int(input("мод"))
-group_len = int(input("группа символов"))
-
 def litter(text, key, group_len, mod):
     lkey = len(key)
     ltext = len(text)
@@ -25,23 +19,28 @@ def encryption(text, key, mod, group_len):
     ltext = len(text)
     probel = ''
     text = litter(text, key, group_len, mod)
-
-
-
-
-print (litter(text, key, group_len, mod))
-
-
-
-
+    for i in range(0, ltext, lkey):
+        text = text[i:i + lkey]
+    result = probel.join([probel.join([text_part[key.index(str(i))] for i in range(lkey)]) for text_part in text])
+    return result
 
 
 
 
 
 
-
-
+print("что вы хотите сделать?\n", "1 - зашифровать\n", "2 - расшифровать")
+er = int(input())
+print("выберите вид шифрования: \n", "1 - посимвольно\n", "2 - группа символов\n", "3 - по словам")
+mod = int(input())
+if mod == 2:
+    group_len = int(input("количество символов в блоке: "))
+else:
+    group_len = 1
+text = input("Введите текст: ")
+key = input('Введите ключ (через пробел, например - 3 0 1 2):').split(' ')
+if er == 1:
+    print(litter(text, key, group_len, mod))
 
 
 
