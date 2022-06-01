@@ -10,7 +10,7 @@ def litter(text, key, group_len, mod):
         text = [text[i:i + group_len] for i in range(0, len(text), group_len)]
     elif mod == 3:
         probel = ' '
-        text = text.split
+        text = text.split()
         text += ['\0' for k in range((lkey - (ltext % lkey)) % lkey)]
     return text
 
@@ -19,13 +19,10 @@ def encryption(text, key, mod, group_len):
     ltext = len(text)
     probel = ''
     text = litter(text, key, group_len, mod)
-    for i in range(0, ltext, lkey):
-        text = text[i:i + lkey]
-    result = probel.join([probel.join([text_part[key.index(str(i))] for i in range(lkey)]) for text_part in text])
+    text = [text[i:i + lkey] for i in range(0, len(text), lkey)]
+    result = probel.join(
+        [probel.join([text_part[key.index(str(i))] for i in range(lkey)]) for text_part in text])
     return result
-
-
-
 
 
 
@@ -40,8 +37,9 @@ else:
 text = input("Введите текст: ")
 key = input('Введите ключ (через пробел, например - 3 0 1 2):').split(' ')
 if er == 1:
-    print(litter(text, key, group_len, mod))
-
+    print(encryption(text, key, mod, group_len))
+elif er ==2:
+    print("расш")
 
 
 
