@@ -20,11 +20,18 @@ def encryption(text, key, mod, group_len):
     probel = ''
     text = litter(text, key, group_len, mod)
     text = [text[i:i + lkey] for i in range(0, len(text), lkey)]
-    result = probel.join(
-        [probel.join([text_part[key.index(str(i))] for i in range(lkey)]) for text_part in text])
+    result = probel.join([probel.join([text_part[key.index(str(i))] for i in range(lkey)]) for text_part in text])
     return result
 
-
+def recryption(text, key, mod, group_len):
+    lkey = len(key)
+    ltext = len(text)
+    probel = ''
+    text = litter(text, key, group_len, mod)
+    text = [text[i:i + lkey] for i in range(0, len(text), lkey)]
+    result = probel.join([probel.join([text_part[int(i)] for i in key]) for text_part in text]).replace(
+            '\0', '')
+    return result
 
 print("что вы хотите сделать?\n", "1 - зашифровать\n", "2 - расшифровать")
 er = int(input())
@@ -39,11 +46,4 @@ key = input('Введите ключ (через пробел, например 
 if er == 1:
     print(encryption(text, key, mod, group_len))
 elif er ==2:
-    print(decryption(text, key, mod, group_len))
-
-
-
-
-
-
-
+    print(recryption(text, key, mod, group_len))
