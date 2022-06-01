@@ -39,7 +39,7 @@ key = input('Введите ключ (через пробел, например 
 if er == 1:
     print(encryption(text, key, mod, group_len))
 elif er ==2:
-    print("расш")
+    print(decryption(text, key, mod, group_len))
 
 
 
